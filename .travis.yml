@@ -1,6 +1,6 @@
 language: android
 jdk: oraclejdk8
-sudo: false
+sudo: required
 
 env:
   global:
@@ -28,18 +28,30 @@ cache:
     - $HOME/.gradle/native      #Cache library downloaded from the gradle dependency
     - $HOME/.gradle/wrapper     #Cache the gradle
 
-licenses: 
-    - 'android-sdk-preview-license-52d11cd2' 
-    - 'android-sdk-license-.+' 
-    - 'google-gdk-license-.+'
-
 before_install:
     - mkdir "$ANDROID_HOME/licenses" || true
     - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
     - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
   
-script: ./gradlew build
+install:
+    # Update sdk tools to latest version and install/update components
+    - echo yes | sdkmanager "tools"
+    - echo yes | sdkmanager "platforms;android-26" # Latest platform required by SDK tools
+    - echo yes | sdkmanager "build-tools;26.0.1"
+    - echo yes | sdkmanager "extras;android;m2repository"
+    - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+    - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+    
+    # Show version and download Gradle Wrapper if it's not already cached
+    - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew --version
+    
+    # Clean project and download missing dependencies and components
+    - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew clean build
+  
+    # Check components status
+    - sdkmanager --list || true
+  
+script: cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew build
 
 after_success:
     - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/Admin/build/outputs/apk/Admin-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/User/build/outputs/apk/User-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://208.91.198.16/blood_bank/builds/travis/
-    
