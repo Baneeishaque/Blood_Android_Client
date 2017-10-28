@@ -18,7 +18,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:background="@drawable/shape_button"
+        
         android:text="@string/payment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/button_sales"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="8dp"
 
         android:layout_marginStart="16dp"
-        android:background="@drawable/shape_button"
+       
         android:text="@string/payment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
