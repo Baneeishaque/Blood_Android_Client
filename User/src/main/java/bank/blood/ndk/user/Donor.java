@@ -2,6 +2,14 @@ package bank.blood.ndk.user;
 
 
 public class Donor {
+    public String getBlood_group() {
+        return blood_group;
+    }
+
+    public void setBlood_group(String blood_group) {
+        this.blood_group = blood_group;
+    }
+
     String blood_group;
     String address;
 
@@ -13,12 +21,15 @@ public class Donor {
         this.address = address;
     }
 
-    public Donor(String name, String address, String mobile_number, String blood_group) {
-        this.address = address;
-        this.mobile_number =mobile_number;
-        this.blood_group =blood_group;
-        this.name=name;
+    public int getSno() {
+        return sno;
     }
+
+    public void setSno(int sno) {
+        this.sno = sno;
+    }
+
+    int sno;
 
     public String getMobile_number() {
         return mobile_number;

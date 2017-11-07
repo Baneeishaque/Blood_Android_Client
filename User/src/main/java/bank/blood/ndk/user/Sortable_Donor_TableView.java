@@ -17,17 +17,17 @@ import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders;
  * @author ISchwarz
  */
 
-public class Sortable_Sales_TableView extends SortableTableView<Donor> {
+public class Sortable_Donor_TableView extends SortableTableView<Donor> {
 
-    public Sortable_Sales_TableView(final Context context) {
+    public Sortable_Donor_TableView(final Context context) {
         this(context, null);
     }
 
-    public Sortable_Sales_TableView(final Context context, final AttributeSet attributes) {
+    public Sortable_Donor_TableView(final Context context, final AttributeSet attributes) {
         this(context, attributes, android.R.attr.listViewStyle);
     }
 
-    public Sortable_Sales_TableView(final Context context, final AttributeSet attributes, final int styleAttributes) {
+    public Sortable_Donor_TableView(final Context context, final AttributeSet attributes, final int styleAttributes) {
         super(context, attributes, styleAttributes);
 
         final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "#","Name","Address","Mobile No.","BGroup");
@@ -40,18 +40,18 @@ public class Sortable_Sales_TableView extends SortableTableView<Donor> {
         setHeaderSortStateViewProvider(SortStateViewProviders.brightArrows());
 
         final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(5);
-        tableColumnWeightModel.setColumnWeight(0, 2);
+        tableColumnWeightModel.setColumnWeight(0, 1);
         tableColumnWeightModel.setColumnWeight(1, 2);
         tableColumnWeightModel.setColumnWeight(2, 2);
-        tableColumnWeightModel.setColumnWeight(3, 3);
         tableColumnWeightModel.setColumnWeight(3, 2);
+        tableColumnWeightModel.setColumnWeight(3, 1);
         setColumnModel(tableColumnWeightModel);
 
-        setColumnComparator(0, Lottery_Sales_Comparators.getSnoComparator());
-        setColumnComparator(1, Lottery_Sales_Comparators.getSerialComparator());
-        setColumnComparator(2, Lottery_Sales_Comparators.getCountComparator());
-        setColumnComparator(3, Lottery_Sales_Comparators.getDonorNameComparator());
-        setColumnComparator(4, Lottery_Sales_Comparators.getDonorNameComparator());
+        setColumnComparator(0, Donor_Comparators.getDonorSnoComparator());
+        setColumnComparator(1, Donor_Comparators.getDonorNameComparator());
+        setColumnComparator(2, Donor_Comparators.getDonorAddressComparator());
+        setColumnComparator(3, Donor_Comparators.getDonorMobileNumberComparator());
+        setColumnComparator(4, Donor_Comparators.getDonorBloodGroupComparator());
     }
 
 }

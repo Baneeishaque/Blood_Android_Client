@@ -19,12 +19,10 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".Search" />
-        <activity android:name=".Launcher">
-
-        </activity>
+        <activity android:name=".Launcher"></activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".User_Home"
+            android:label="@string/title_activity_user__home"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

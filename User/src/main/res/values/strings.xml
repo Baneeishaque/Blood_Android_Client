@@ -1,7 +1,11 @@
 <resources>
-    <string name="app_name">Blood_User</string>
+    <string name="app_name">Blood Bank</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="payment">Test</string>
+    <string name="title_activity_user__home">User Home</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 </resources>
