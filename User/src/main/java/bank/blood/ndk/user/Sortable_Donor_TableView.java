@@ -30,7 +30,9 @@ public class Sortable_Donor_TableView extends SortableTableView<Donor> {
     public Sortable_Donor_TableView(final Context context, final AttributeSet attributes, final int styleAttributes) {
         super(context, attributes, styleAttributes);
 
-        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "#","Name","Address","Mobile No.","BGroup");
+//        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "#","Name","Address","Mobile No.","BGroup");
+        final SimpleTableHeaderAdapter simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(context, "#","Name","Address","Mobile No.");
+
         simpleTableHeaderAdapter.setTextColor(ContextCompat.getColor(context, R.color.table_header_text));
         setHeaderAdapter(simpleTableHeaderAdapter);
 
@@ -39,19 +41,19 @@ public class Sortable_Donor_TableView extends SortableTableView<Donor> {
         setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(rowColorEven, rowColorOdd));
         setHeaderSortStateViewProvider(SortStateViewProviders.brightArrows());
 
-        final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(5);
+        final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(4);
         tableColumnWeightModel.setColumnWeight(0, 1);
         tableColumnWeightModel.setColumnWeight(1, 2);
         tableColumnWeightModel.setColumnWeight(2, 2);
         tableColumnWeightModel.setColumnWeight(3, 2);
-        tableColumnWeightModel.setColumnWeight(3, 1);
+//        tableColumnWeightModel.setColumnWeight(4, 1);
         setColumnModel(tableColumnWeightModel);
 
         setColumnComparator(0, Donor_Comparators.getDonorSnoComparator());
         setColumnComparator(1, Donor_Comparators.getDonorNameComparator());
         setColumnComparator(2, Donor_Comparators.getDonorAddressComparator());
         setColumnComparator(3, Donor_Comparators.getDonorMobileNumberComparator());
-        setColumnComparator(4, Donor_Comparators.getDonorBloodGroupComparator());
+//        setColumnComparator(4, Donor_Comparators.getDonorBloodGroupComparator());
     }
 
 }

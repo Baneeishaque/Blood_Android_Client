@@ -52,4 +52,11 @@ public class Donor {
 
     String name;
 
+    public Donor(String blood_group, String address, int sno, String mobile_number, String name) {
+        this.blood_group = blood_group;
+        this.address = address;
+        this.sno = sno;
+        this.mobile_number = mobile_number;
+        this.name = name;
+    }
 }

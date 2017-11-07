@@ -1,21 +1,22 @@
 package bank.blood.ndk.user;
 
-import android.support.design.widget.TabLayout;
+import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User_Home extends AppCompatActivity {
 
@@ -33,6 +34,7 @@ public class User_Home extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,6 +172,107 @@ public class User_Home extends AppCompatActivity {
             return null;
         }
     }
+    static ProgressDialog pd;
+    static void get_sales_thread() {
+
+//        pd = ProgressDialog.show(this, "", "Please wait...");
+        new Thread(new Runnable() {
+            public void run() {
+                get_sales();
+
+            }
+
+
+        }).start();
+
+    }
+
+
+    static Sortable_Donor_TableView donor_tableView_sortable;
+    private static void get_sales() {
+//        try {
+//            httpcnt = new DefaultHttpClient();
+//            httpost = new HttpPost("http://" + General_Data.SERVER_IP_ADDRESS + "/android/get_sale_scheme.php");
+//            nvp = new ArrayList<NameValuePair>(2);
+//
+//            nvp.add(new BasicNameValuePair("date", current_date));
+//
+//            nvp.add(new BasicNameValuePair("scheme", extras.getString("scheme")));
+//
+//            httpost.setEntity(new UrlEncodedFormEntity(nvp));
+//            ResponseHandler<String> s = new BasicResponseHandler();
+//            response = httpcnt.execute(httpost, s);
+//            runOnUiThread(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Log.d(General_Data.TAG, response);
+//                    pd.dismiss();
+//                    try {
+//
+//                        JSONArray json_array = new JSONArray(response);
+//                        if (json_array.getJSONObject(0).getString("sum").equals("null")) {
+//                            buttonSales.setText("0");
+//                        } else {
+//                            buttonSales.setText(json_array.getJSONObject(0).getString("sum"));
+//                        }
+//                        List<Lottery_ticket> lottery_tickets = new ArrayList<>();
+//                        for (int i = 1; i < json_array.length(); i++) {
+//
+//
+//                            Lottery_ticket lottery_ticket = new Lottery_ticket(String.valueOf(i),"", json_array.getJSONObject(i).getString("serial"), json_array.getJSONObject(i).getString("count"), json_array.getJSONObject(i).getString("agent"), json_array.getJSONObject(i).getString("name"));
+//
+//                            lottery_tickets.add(lottery_ticket);
+//
+//
+//                        }
+//
+//                        if (sales_tableView != null) {
+//                            final Lottery_Ticket_Table_Data_Adapter lottery_ticket_table_data_adapter = new Lottery_Ticket_Table_Data_Adapter(getApplicationContext(), lottery_tickets, sales_tableView);
+//                            sales_tableView.setDataAdapter(lottery_ticket_table_data_adapter);
+//
+//                        }
+//
+//
+//                    } catch (JSONException e) {
+//                        Toast.makeText(Sales.this, "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//                        Log.d(General_Data.TAG, e.getLocalizedMessage());
+//                    }
+//
+//
+//                }
+//            });
+//        } catch (final Exception e) {
+//            runOnUiThread(new Runnable() {
+//
+//                @Override
+//                public void run() {
+//                    Toast.makeText(Sales.this, "Error : " + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+//                    Log.d(General_Data.TAG, e.getLocalizedMessage());
+//                    pd.dismiss();
+//                }
+//            });
+//        }
+
+        List<Donor> donors = new ArrayList<>();
+        donors.add(new Donor("A+","Address",1,"9895204814","Name"));
+        donors.add(new Donor("A+","Address",1,"9895204814","Name"));
+        donors.add(new Donor("A+","Address",1,"9895204814","Name"));
+        donors.add(new Donor("A+","Address",1,"9895204814","Name"));
+        donors.add(new Donor("A+","Address",1,"9895204814","Name"));
+        if (donor_tableView_sortable != null) {
+//                            final Lottery_Ticket_Table_Data_Adapter lottery_ticket_table_data_adapter = new Lottery_Ticket_Table_Data_Adapter(getApplicationContext(), lottery_tickets, sales_tableView);
+                            donor_tableView_sortable.setDataAdapter(new Sortable_Donor_Table_Data_Adapter(Pending_Works_Fragment.this,donors,donor_tableView_sortable));
+//
+                        }
+    }
+
+
+
+//    DefaultHttpClient httpcnt;
+//    HttpPost httpost;
+//    ArrayList<NameValuePair> nvp;
+//    String response;
 
     /**
      * A placeholder fragment containing a simple view.
@@ -193,15 +296,16 @@ public class User_Home extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
 
-            String[][] DATA_TO_SHOW = { { "This", "is", "a", "test","" },
-                    { "and", "a", "second", "test","" } };
+
 
             View rootView = inflater.inflate(R.layout.fragment_pending_works, container, false);
 
-            Sortable_Donor_TableView donor_tableView_sortable = (Sortable_Donor_TableView) rootView.findViewById(R.id.tableView);
-            donor_tableView_sortable.setColumnCount(5);
-
-            donor_tableView_sortable.setDataAdapter(new SimpleTableDataAdapter(User_Home.this, DATA_TO_SHOW));
+     donor_tableView_sortable = (Sortable_Donor_TableView) rootView.findViewById(R.id.tableView);
+            get_sales_thread();
+            //            donor_tableView_sortable.setColumnCount(5);
+//            String[][] DATA_TO_SHOW = { { "This", "is", "a", "test","" },
+//                    { "and", "a", "second", "test","" } };
+//            donor_tableView_sortable.setDataAdapter(new SimpleTableDataAdapter(this, DATA_TO_SHOW));
 
 //            recyclerView = rootView.findViewById(R.id.recycler_view);
 //
@@ -264,6 +368,7 @@ public class User_Home extends AppCompatActivity {
 //            pen_data_flag=1;
 //        }
     }
+
 
 
     /**
