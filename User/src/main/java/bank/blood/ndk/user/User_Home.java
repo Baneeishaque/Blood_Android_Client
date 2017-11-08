@@ -1,6 +1,7 @@
 package bank.blood.ndk.user;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -34,12 +35,15 @@ public class User_Home extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private static Context sContext;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_home);
+
+        sContext = getApplicationContext();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -159,18 +163,18 @@ public class User_Home extends AppCompatActivity {
             return 3;
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Records";
-                case 1:
-                    return "Searchs";
-                case 2:
-                    return "Contacts Us";
-            }
-            return null;
-        }
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            switch (position) {
+//                case 0:
+//                    return "Records";
+//                case 1:
+//                    return "Searchs";
+//                case 2:
+//                    return "Contacts Us";
+//            }
+//            return null;
+//        }
     }
     static ProgressDialog pd;
     static void get_sales_thread() {
@@ -255,14 +259,14 @@ public class User_Home extends AppCompatActivity {
 //        }
 
         List<Donor> donors = new ArrayList<>();
-        donors.add(new Donor("A+","Address",1,"9895204814","Name"));
+        donors.add(new Donor("A+","AddressAddressAddressAddressAddressAddressAddressAddressAddressAddress",1,"9895204814","Name"));
         donors.add(new Donor("A+","Address",1,"9895204814","Name"));
         donors.add(new Donor("A+","Address",1,"9895204814","Name"));
         donors.add(new Donor("A+","Address",1,"9895204814","Name"));
         donors.add(new Donor("A+","Address",1,"9895204814","Name"));
         if (donor_tableView_sortable != null) {
 //                            final Lottery_Ticket_Table_Data_Adapter lottery_ticket_table_data_adapter = new Lottery_Ticket_Table_Data_Adapter(getApplicationContext(), lottery_tickets, sales_tableView);
-                            donor_tableView_sortable.setDataAdapter(new Sortable_Donor_Table_Data_Adapter(Pending_Works_Fragment.this,donors,donor_tableView_sortable));
+                            donor_tableView_sortable.setDataAdapter(new Sortable_Donor_Table_Data_Adapter(sContext,donors,donor_tableView_sortable));
 //
                         }
     }
@@ -281,6 +285,7 @@ public class User_Home extends AppCompatActivity {
 
 
         public Pending_Works_Fragment() {
+
         }
 
         /**

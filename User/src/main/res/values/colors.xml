@@ -6,4 +6,5 @@
     <color name="table_header_text">#000000</color>
     <color name="table_data_row_even">#11C5CAE9</color>
     <color name="table_data_row_odd">#33C5CAE9</color>
+    <color name="black">#171515</color>
 </resources>

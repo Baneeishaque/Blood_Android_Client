@@ -43,8 +43,8 @@ public class Sortable_Donor_TableView extends SortableTableView<Donor> {
 
         final TableColumnWeightModel tableColumnWeightModel = new TableColumnWeightModel(4);
         tableColumnWeightModel.setColumnWeight(0, 1);
-        tableColumnWeightModel.setColumnWeight(1, 2);
-        tableColumnWeightModel.setColumnWeight(2, 2);
+        tableColumnWeightModel.setColumnWeight(1, 3);
+        tableColumnWeightModel.setColumnWeight(2, 3);
         tableColumnWeightModel.setColumnWeight(3, 2);
 //        tableColumnWeightModel.setColumnWeight(4, 1);
         setColumnModel(tableColumnWeightModel);
