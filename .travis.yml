@@ -68,4 +68,4 @@ install:
 script: ./gradlew build
 
 after_success:
-    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/Admin/build/outputs/apk/Admin-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/User/build/outputs/apk/User-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://vfmob.com.md-in-64.webhostbox.net/baneeishaque/blood_bank_production/builds/travis/
+    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/Admin/build/outputs/apk/debug/Admin-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/User/build/outputs/apk/debug/User-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://vfmob.com.md-in-64.webhostbox.net/baneeishaque/blood_bank_production/builds/travis/
