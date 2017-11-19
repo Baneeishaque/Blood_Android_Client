@@ -1,10 +1,12 @@
 language: android
 jdk: oraclejdk8
-sudo: required
+sudo: false
 
 env:
   global:
-    - "FTP_USER=root@filebooker.com"
+    #- "FTP_USER=root@filebooker.com"
+    #- "FTP_PASSWORD=9895204814"
+    - "FTP_USER=ndk@vfmob.com.md-in-64.webhostbox.net"
     - "FTP_PASSWORD=9895204814"
     
 notifications:
@@ -15,8 +17,8 @@ android:
   components:
     - platform-tools
     - tools
-    - build-tools-26.0.1
-    - android-26
+    - build-tools-27.0.1
+    - android-27
     - extra-android-m2repository
 
 before_cache:
@@ -36,9 +38,9 @@ before_install:
     #- rm -f ~/.gradle/gradle.properties
     #- mkdir -p ~/.gradle
     #- echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
-    - echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
-    - echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
-    - echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+    #- echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
+    #- echo "org.gradle.configureondemand=true" >> ~/.gradle/gradle.properties
+    #- echo "org.gradle.jvmargs=-Xmx8192m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
     #- cat ~/.gradle/gradle.properties
   
 install:
@@ -51,8 +53,8 @@ install:
     #- echo yes | sdkmanager "platforms;android-26" # Latest platform required by SDK tools
     #- echo yes | sdkmanager "build-tools;26.0.1"
     #- echo yes | sdkmanager "extras;android;m2repository"
-    - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
-    - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+    #- echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+    #- echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
     
     # Show version of Gradle
     #- gradle --version
@@ -63,7 +65,7 @@ install:
     # Clean project and download missing dependencies and components
     #- cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew clean build
   
-script: cd ${TRAVIS_BUILD_DIR}/${DIR} && gradle build --scan
+script: ./gradlew build
 
 after_success:
-    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/Admin/build/outputs/apk/Admin-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/User/build/outputs/apk/User-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://208.91.198.16/blood_bank/builds/travis/
+    - curl --ftp-create-dirs -T "{${TRAVIS_BUILD_DIR}/${DIR}/Admin/build/outputs/apk/Admin-debug.apk,${TRAVIS_BUILD_DIR}/${DIR}/User/build/outputs/apk/User-debug.apk}" -u $FTP_USER:$FTP_PASSWORD ftp://vfmob.com.md-in-64.webhostbox.net/baneeishaque/blood_bank_production/builds/travis/

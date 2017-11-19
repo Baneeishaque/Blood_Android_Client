@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Admin/Admin.iml" filepath="$PROJECT_DIR$/Admin/Admin.iml" />
-      <module fileurl="file://F:\Lab\Blood_Android_Client\Admin\Admin.iml" filepath="F:\Lab\Blood_Android_Client\Admin\Admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/Blood_Android_Client.iml" filepath="$PROJECT_DIR$/Blood_Android_Client.iml" />
-      <module fileurl="file://F:\Lab\Blood_Android_Client\Blood_Bank.iml" filepath="F:\Lab\Blood_Android_Client\Blood_Bank.iml" />
       <module fileurl="file://$PROJECT_DIR$/User/User.iml" filepath="$PROJECT_DIR$/User/User.iml" />
-      <module fileurl="file://F:\Lab\Blood_Android_Client\User\User.iml" filepath="F:\Lab\Blood_Android_Client\User\User.iml" />
     </modules>
   </component>
 </project>
